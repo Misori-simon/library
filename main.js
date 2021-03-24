@@ -80,9 +80,12 @@ function displayForm () {
     addForm.appendChild(pageInput);
 
     const readInput = document.createElement('input');
-    readInput.setAttribute("placeholder", "Read");
     readInput.setAttribute("type", "checkbox");
     addForm.appendChild(readInput);
+    const checkboxLabel = document.createElement('label');
+    addForm.appendChild(checkboxLabel);
+    const checkboxLabelText = document.createTextNode("Read?");
+    checkboxLabel.appendChild(checkboxLabelText);
 
 
   } )
