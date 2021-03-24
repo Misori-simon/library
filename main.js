@@ -59,13 +59,38 @@ function displayForm () {
   const formWrapper = document.createElement("div");
   body.appendChild(formWrapper);
   const  btn = document.createElement("button");
- const btnText = document.createTextNode("Add Book")
- btn.appendChild(btnText) 
+ const btnText = document.createTextNode("Add Book");
+ btn.appendChild(btnText);
   btn.classList.add("add-btn");
   formWrapper.appendChild(btn);
+
+  btn.addEventListener('click', ()=> {
+    const addForm = document.createElement('form');
+    formWrapper.appendChild(addForm);
+    const titleInput = document.createElement('input')
+    titleInput.setAttribute("placeholder", "Book Title")
+    addForm.appendChild(titleInput)
+
+    const authorInput = document.createElement('input');
+    authorInput.setAttribute("placeholder", "Author Name");
+    addForm.appendChild(authorInput);
+
+    const pageInput = document.createElement('input');
+    pageInput.setAttribute("placeholder", "Number of pages");
+    addForm.appendChild(pageInput);
+
+    const readInput = document.createElement('input');
+    readInput.setAttribute("placeholder", "Read");
+    readInput.setAttribute("type", "checkbox");
+    addForm.appendChild(readInput);
+
+
+  } )
 }
 
-document.body.onload = displayBooks(myLibrary);
+displayBooks(myLibrary);
+displayForm();
+
 
 // function Book() {
 //   //code goes here
