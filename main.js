@@ -54,41 +54,39 @@ const displayBooks = (arr) => {
     cardWrapper.appendChild(bookReadState);
   }
 };
-function displayForm () {
-  const body = document.getElementById("body");
-  const formWrapper = document.createElement("div");
+function displayForm() {
+  const body = document.getElementById('body');
+  const formWrapper = document.createElement('div');
   body.appendChild(formWrapper);
-  const  btn = document.createElement("button");
- const btnText = document.createTextNode("Add Book");
- btn.appendChild(btnText);
-  btn.classList.add("add-btn");
+  const btn = document.createElement('button');
+  const btnText = document.createTextNode('Add Book');
+  btn.appendChild(btnText);
+  btn.classList.add('add-btn');
   formWrapper.appendChild(btn);
 
-  btn.addEventListener('click', ()=> {
+  btn.addEventListener('click', () => {
     const addForm = document.createElement('form');
     formWrapper.appendChild(addForm);
-    const titleInput = document.createElement('input')
-    titleInput.setAttribute("placeholder", "Book Title")
-    addForm.appendChild(titleInput)
+    const titleInput = document.createElement('input');
+    titleInput.setAttribute('placeholder', 'Book Title');
+    addForm.appendChild(titleInput);
 
     const authorInput = document.createElement('input');
-    authorInput.setAttribute("placeholder", "Author Name");
+    authorInput.setAttribute('placeholder', 'Author Name');
     addForm.appendChild(authorInput);
 
     const pageInput = document.createElement('input');
-    pageInput.setAttribute("placeholder", "Number of pages");
+    pageInput.setAttribute('placeholder', 'Number of pages');
     addForm.appendChild(pageInput);
 
     const readInput = document.createElement('input');
-    readInput.setAttribute("type", "checkbox");
+    readInput.setAttribute('type', 'checkbox');
     addForm.appendChild(readInput);
     const checkboxLabel = document.createElement('label');
     addForm.appendChild(checkboxLabel);
-    const checkboxLabelText = document.createTextNode("Read?");
+    const checkboxLabelText = document.createTextNode('Read?');
     checkboxLabel.appendChild(checkboxLabelText);
-
-
-  } )
+  });
 }
 
 displayBooks(myLibrary);
