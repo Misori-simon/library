@@ -54,6 +54,16 @@ const displayBooks = (arr) => {
     cardWrapper.appendChild(bookReadState);
   }
 };
+function displayForm () {
+  const body = document.getElementById("body");
+  const formWrapper = document.createElement("div");
+  body.appendChild(formWrapper);
+  const  btn = document.createElement("button");
+ const btnText = document.createTextNode("Add Book")
+ btn.appendChild(btnText) 
+  btn.classList.add("add-btn");
+  formWrapper.appendChild(btn);
+}
 
 document.body.onload = displayBooks(myLibrary);
 
