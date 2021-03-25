@@ -125,6 +125,12 @@ const displayBooks = (arr) => {
     const bookReadStateText = document.createTextNode(arr[i].read);
     bookReadState.appendChild(bookReadStateText);
 
+    const readstatusBtn = document.createElement('button');
+    readstatusBtn.classList.add('change-status');
+    readstatusBtntxt = document.createTextNode('change read status');
+    readstatusBtn.appendChild(readstatusBtntxt);
+    readstatusBtn.addEventListener('click', ()=> { changeReadStatus (bookReadState, arr, i)});
+
     const removeBookButton = document.createElement('button');
     removeBookButton.setAttribute('type', 'button');
     const removeBookButtonText = document.createTextNode('remove');
@@ -138,10 +144,22 @@ const displayBooks = (arr) => {
     cardWrapper.appendChild(bookPages);
     cardWrapper.appendChild(bookReadState);
     cardWrapper.appendChild(removeBookButton);
+    cardWrapper.appendChild(readstatusBtn);
   }
   displayForm();
 };
 
+function changeReadStatus (element, arr, index) {
+  if (element.innerHTML == "true") {
+    arr[index].read = false;
+    
+    
+  }else {
+    arr[index].read = true;
+  }
+
+  element.innerHTML = arr[index].read;
+}
 displayBooks(myLibrary);
 
 // function Book() {
