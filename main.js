@@ -35,12 +35,7 @@ function addBookToLibrary() {
     return false;
   };
   const readValue = checkboxState();
-  myLibrary.push({
-    title: titleValue,
-    author: authorValue,
-    pages: pageValue,
-    read: readValue,
-  });
+  myLibrary.push(new Book (titleValue, authorValue,pageValue,readValue));
   clearDom();
   displayBooks(myLibrary);
 }
@@ -129,7 +124,7 @@ const displayBooks = (arr) => {
     readstatusBtn.classList.add('change-status');
     readstatusBtntxt = document.createTextNode('change read status');
     readstatusBtn.appendChild(readstatusBtntxt);
-    readstatusBtn.addEventListener('click', ()=> { changeReadStatus (bookReadState, arr, i)});
+    readstatusBtn.addEventListener('click', ()=> { arr[i].changeStatus (bookReadState)});
 
     const removeBookButton = document.createElement('button');
     removeBookButton.setAttribute('type', 'button');
@@ -149,19 +144,23 @@ const displayBooks = (arr) => {
   displayForm();
 };
 
-function changeReadStatus (element, arr, index) {
-  if (element.innerHTML == "true") {
-    arr[index].read = false;
-    
-    
-  }else {
-    arr[index].read = true;
-  }
 
-  element.innerHTML = arr[index].read;
-}
 displayBooks(myLibrary);
 
-// function Book() {
-//   //code goes here
-// }
+function Book(title, author, pages, read) {
+this.title = title
+this.author = author;
+this.pages = pages;
+this.read = read;
+}
+Book.prototype.changeStatus = (element)=> {
+    if (this.read == true) {
+      this.read = false;
+      
+    }else {
+      this.read = true;
+    }
+  
+    element.innerHTML = this.read;
+  
+}
