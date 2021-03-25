@@ -62,7 +62,7 @@ The JS has the following structure
 
 - GitHub: [@Nkuria](https://github.com/Nkuria)
 - Twitter: [@Nkuria](https://twitter.com/Nkuria3)
-- LinkedIn: [Nick Kuria](hhttps://www.linkedin.com/in/nick-kuria-a148931a9/)
+- LinkedIn: [Nick Kuria](https://www.linkedin.com/in/nick-kuria-a148931a9/)
 
 ## 🤝 Contributing
 
