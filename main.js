@@ -47,6 +47,8 @@ function addBookToLibrary() {
 
 function removeBookFromLibrary(index) {
   myLibrary.splice(index, 1);
+  clearDom();
+  displayBooks(myLibrary);
 }
 
 function displayForm() {
@@ -124,9 +126,11 @@ const displayBooks = (arr) => {
     bookReadState.appendChild(bookReadStateText);
 
     const removeBookButton = document.createElement('button');
+    removeBookButton.setAttribute('type', 'button');
     const removeBookButtonText = document.createTextNode('remove');
     removeBookButton.appendChild(removeBookButtonText);
-    removeBookButton.addEventListener('click', removeBookFromLibrary(cardWrapper.getAttribute('data-index-number')));
+    const index = cardWrapper.getAttribute('data-index-number');
+    removeBookButton.addEventListener('click', () => { removeBookFromLibrary(index); }, false);
 
 
     cardWrapper.appendChild(bookTitle);
