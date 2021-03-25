@@ -11,7 +11,7 @@ Book.prototype.changeStatus = (element) => {
   } else {
     this.read = true;
   }
-  element.innerHTML = this.read;
+  element.innerHTML = `Read book?: ${this.read}`;
 };
 
 const myLibrary = [];
@@ -23,6 +23,15 @@ function clearDom() {
   document.body.innerHTML = '';
 }
 
+function displayHeader() {
+  const body = document.getElementById('body');
+
+  const header = document.createElement('h3');
+  header.classList.add('header');
+  const headerText = document.createTextNode('My Library');
+  header.appendChild(headerText);
+  body.appendChild(header);
+}
 
 function addBookToLibrary() {
   const titleValue = document.getElementsByTagName('input')[0].value;
@@ -35,7 +44,7 @@ function addBookToLibrary() {
     return false;
   };
   const readValue = checkboxState();
-  myLibrary.push(new Book(titleValue, authorValue,pageValue,readValue));
+  myLibrary.push(new Book(titleValue, authorValue, pageValue, readValue));
   clearDom();
   displayBooks(myLibrary);
 }
@@ -49,7 +58,9 @@ function removeBookFromLibrary(index) {
 function displayForm() {
   const body = document.getElementById('body');
   const formWrapper = document.createElement('div');
+  formWrapper.classList.add('form-wrapper');
   body.appendChild(formWrapper);
+
   const btn = document.createElement('button');
   const btnText = document.createTextNode('Add Book');
   btn.appendChild(btnText);
@@ -91,6 +102,7 @@ function displayForm() {
 }
 
 const displayBooks = (arr) => {
+  displayHeader();
   for (let i = 0; i < arr.length; i += 1) {
     const body = document.getElementById('body');
 
@@ -111,20 +123,20 @@ const displayBooks = (arr) => {
 
     const bookPages = document.createElement('p');
     bookPages.classList.add('pages');
-    const bookPagesText = document.createTextNode(arr[i].pages);
+    const bookPagesText = document.createTextNode(`Pages: ${arr[i].pages}`);
     bookPages.appendChild(bookPagesText);
 
 
     const bookReadState = document.createElement('p');
     bookReadState.classList.add('read-state');
-    const bookReadStateText = document.createTextNode(arr[i].read);
+    const bookReadStateText = document.createTextNode(`Read book?: ${arr[i].read}`);
     bookReadState.appendChild(bookReadStateText);
 
     const readstatusBtn = document.createElement('button');
     readstatusBtn.classList.add('change-status');
     const readstatusBtntxt = document.createTextNode('change read status');
     readstatusBtn.appendChild(readstatusBtntxt);
-    readstatusBtn.addEventListener('click', () => { arr[i].changeStatus(bookReadState)});
+    readstatusBtn.addEventListener('click', () => { arr[i].changeStatus(bookReadState); });
 
     const removeBookButton = document.createElement('button');
     removeBookButton.setAttribute('type', 'button');
@@ -144,6 +156,4 @@ const displayBooks = (arr) => {
   displayForm();
 };
 
-
 displayBooks(myLibrary);
-
