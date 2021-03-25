@@ -1,23 +1,23 @@
-const myLibrary = [
-  {
-    author: 'Sam Smith',
-    title: 'Javascript for Dummies',
-    pages: 235,
-    read: false,
-  },
-  {
-    author: 'John Doe',
-    title: 'Javascript, The Fundamentals',
-    pages: 435,
-    read: true,
-  },
-  {
-    author: 'Isaac Asimov',
-    title: 'Newtons Theory on Relativity',
-    pages: 235,
-    read: false,
-  },
-];
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+}
+
+Book.prototype.changeStatus = (element) => {
+  if (this.read === true) {
+    this.read = false;
+  } else {
+    this.read = true;
+  }
+  element.innerHTML = this.read;
+};
+
+const myLibrary = [];
+myLibrary.push(new Book('Romeo and Juliet', 'William Shakespear', 234, true));
+myLibrary.push(new Book('Oliver Twist', 'Charles Dickens', 122, false));
+myLibrary.push(new Book('Today and Tomorrow', 'Dummy James', 268, false));
 
 function clearDom() {
   document.body.innerHTML = '';
@@ -35,7 +35,7 @@ function addBookToLibrary() {
     return false;
   };
   const readValue = checkboxState();
-  myLibrary.push(new Book (titleValue, authorValue,pageValue,readValue));
+  myLibrary.push(new Book(titleValue, authorValue,pageValue,readValue));
   clearDom();
   displayBooks(myLibrary);
 }
@@ -122,9 +122,9 @@ const displayBooks = (arr) => {
 
     const readstatusBtn = document.createElement('button');
     readstatusBtn.classList.add('change-status');
-    readstatusBtntxt = document.createTextNode('change read status');
+    const readstatusBtntxt = document.createTextNode('change read status');
     readstatusBtn.appendChild(readstatusBtntxt);
-    readstatusBtn.addEventListener('click', ()=> { arr[i].changeStatus (bookReadState)});
+    readstatusBtn.addEventListener('click', () => { arr[i].changeStatus(bookReadState)});
 
     const removeBookButton = document.createElement('button');
     removeBookButton.setAttribute('type', 'button');
@@ -147,20 +147,3 @@ const displayBooks = (arr) => {
 
 displayBooks(myLibrary);
 
-function Book(title, author, pages, read) {
-this.title = title
-this.author = author;
-this.pages = pages;
-this.read = read;
-}
-Book.prototype.changeStatus = (element)=> {
-    if (this.read == true) {
-      this.read = false;
-      
-    }else {
-      this.read = true;
-    }
-  
-    element.innerHTML = this.read;
-  
-}
