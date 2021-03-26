@@ -46,13 +46,13 @@ function addBookToLibrary() {
   const readValue = checkboxState();
   myLibrary.push(new Book(titleValue, authorValue, pageValue, readValue));
   clearDom();
-  displayBooks(myLibrary);
+  displayBooks(myLibrary); // eslint-disable-line no-use-before-define
 }
 
 function removeBookFromLibrary(index) {
   myLibrary.splice(index, 1);
   clearDom();
-  displayBooks(myLibrary);
+  displayBooks(myLibrary); // eslint-disable-line no-use-before-define
 }
 
 function displayForm() {
