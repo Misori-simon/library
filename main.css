@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.header {
+  text-align: center;
+  height: 50px;
+  padding: 15px;
+  background-color: rgb(54, 54, 54);
+  color: rgb(26, 206, 86);
+}
+
+.book-wrapper {
+  display: inline-block;
+  max-width: 400px;
+  background-color: #e2e2e2;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.title,
+.author,
+.pages,
+.read-state {
+  margin-top: 10px;
+}
+
+.author {
+  font-weight: 300;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.pages {
+  font-size: small;
+  font-weight: bold;
+}
+
+.read-state {
+  color: blue;
+  font-size: 14px;
+}
+
+button {
+  display: inline-block;
+  margin: 10px 10px 10px 0;
+  padding: 5px 10px;
+  background-color: rgb(54, 54, 54);
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* form {
+  display: flex;
+} */
+
+form input {
+  border: 1px solid rgb(54, 54, 54);
+  display: inline-block;
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 15px;
+}
+
+form button {
+  display: inline-block;
+  margin-left: 10px;
+  min-height: 35px;
+  background-color: rgb(26, 206, 86);
+}
+
+.form-wrapper {
+  padding: 10px;
+  display: inline-block;
+  background-color: rgb(200, 200, 200);
+}
