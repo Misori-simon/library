@@ -29,119 +29,99 @@ myLibrary.push(Book('Today and Tomorrow', 'Dummy James', 268, false));
 
 // dom control functions
 const dom = (() => {
+  const getElementUsingId = (id) => document.getElementById(id);
+  const createAndAppendElement = (element, parent) => {
+    element = document.createElement(element);
+    parent.appendChild(element);
+    return element;
+  };
+  const addTextToElement = (text, element) => {
+    const elementText = document.createTextNode(text);
+    element.appendChild(elementText);
+  };
+
   const clearDom = () => {
     document.body.innerHTML = '';
   };
 
   const displayHeader = () => {
-    const body = document.getElementById('body');
-
-    const header = document.createElement('h3');
+    const body = getElementUsingId('body');
+    const header = createAndAppendElement('h3', body);
     header.classList.add('header');
-    const headerText = document.createTextNode('My Library');
-    header.appendChild(headerText);
-    body.appendChild(header);
+    addTextToElement('My Library', header);
   };
 
   const showForm = (formWrapper) => {
-    const addForm = document.createElement('form');
-    formWrapper.appendChild(addForm);
-    const titleInput = document.createElement('input');
+    const addForm = createAndAppendElement('form', formWrapper);
+
+    const titleInput = createAndAppendElement('input', addForm);
     titleInput.setAttribute('placeholder', 'Book Title');
-    addForm.appendChild(titleInput);
 
-    const authorInput = document.createElement('input');
+    const authorInput = createAndAppendElement('input', addForm);
     authorInput.setAttribute('placeholder', 'Author Name');
-    addForm.appendChild(authorInput);
 
-    const pageInput = document.createElement('input');
+    const pageInput = createAndAppendElement('input', addForm);
     pageInput.setAttribute('placeholder', 'Number of pages');
-    addForm.appendChild(pageInput);
 
-    const readInput = document.createElement('input');
+    const readInput = createAndAppendElement('input', addForm);
     readInput.setAttribute('type', 'checkbox');
-    addForm.appendChild(readInput);
 
-    const checkboxLabel = document.createElement('label');
-    addForm.appendChild(checkboxLabel);
-    const checkboxLabelText = document.createTextNode('Read?');
-    checkboxLabel.appendChild(checkboxLabelText);
+    const checkboxLabel = createAndAppendElement('label', addForm);
+    addTextToElement('Read?', checkboxLabel);
 
-    const submitButton = document.createElement('button');
+    const submitButton = createAndAppendElement('button', addForm);
     submitButton.setAttribute('type', 'button');
     submitButton.classList.add('submit');
-    const submitButtonText = document.createTextNode('ADD');
-    submitButton.appendChild(submitButtonText);
-    addForm.appendChild(submitButton);
+    addTextToElement('ADD', submitButton);
     submitButton.addEventListener('click', library.addBookToLibrary); // eslint-disable-line no-use-before-define
   };
 
   const displayForm = () => {
-    const body = document.getElementById('body');
-    const formWrapper = document.createElement('div');
+    const body = getElementUsingId('body');
+    const formWrapper = createAndAppendElement('div', body);
     formWrapper.classList.add('form-wrapper');
-    body.appendChild(formWrapper);
 
-    const btn = document.createElement('button');
-    const btnText = document.createTextNode('Add Book');
-    btn.appendChild(btnText);
+    const btn = createAndAppendElement('button', formWrapper);
+    addTextToElement('Add Book', btn);
     btn.classList.add('add-btn');
-    formWrapper.appendChild(btn);
-
     btn.addEventListener('click', () => { showForm(formWrapper); });
   };
 
   const displayBooks = (arr) => {
     displayHeader();
     for (let i = 0; i < arr.length; i += 1) {
-      const body = document.getElementById('body');
+      const body = getElementUsingId('body');
 
-      const cardWrapper = document.createElement('div');
+      const cardWrapper = createAndAppendElement('div', body);
       cardWrapper.classList.add('book-wrapper');
       cardWrapper.setAttribute('data-index-number', i);
-      body.appendChild(cardWrapper);
 
-      const bookTitle = document.createElement('h3');
+      const bookTitle = createAndAppendElement('h3', cardWrapper);
       bookTitle.classList.add('title');
-      const bookTitleText = document.createTextNode(arr[i].title);
-      bookTitle.appendChild(bookTitleText);
+      addTextToElement(arr[i].title, bookTitle);
 
-      const bookAuthor = document.createElement('h3');
+      const bookAuthor = createAndAppendElement('h3', cardWrapper);
       bookAuthor.classList.add('author');
-      const bookAuthorText = document.createTextNode(arr[i].author);
-      bookAuthor.appendChild(bookAuthorText);
+      addTextToElement(arr[i].author, bookAuthor);
 
-      const bookPages = document.createElement('p');
+      const bookPages = createAndAppendElement('p', cardWrapper);
       bookPages.classList.add('pages');
-      const bookPagesText = document.createTextNode(`Pages: ${arr[i].pages}`);
-      bookPages.appendChild(bookPagesText);
+      addTextToElement(`Pages: ${arr[i].pages}`, bookPages);
 
-
-      const bookReadState = document.createElement('p');
+      const bookReadState = createAndAppendElement('p', cardWrapper);
       bookReadState.classList.add('read-state');
-      const bookReadStateText = document.createTextNode(`Read book?: ${arr[i].read}`);
-      bookReadState.appendChild(bookReadStateText);
+      addTextToElement(`Read book?: ${arr[i].read}`, bookReadState);
 
-      const readstatusBtn = document.createElement('button');
+      const readstatusBtn = createAndAppendElement('button', cardWrapper);
       readstatusBtn.classList.add('change-status');
-      const readstatusBtntxt = document.createTextNode('change read status');
-      readstatusBtn.appendChild(readstatusBtntxt);
+      addTextToElement('change read status', readstatusBtn);
       readstatusBtn.addEventListener('click', () => { arr[i].changeStatus(bookReadState); });
 
-      const removeBookButton = document.createElement('button');
+      const removeBookButton = createAndAppendElement('button', cardWrapper);
       removeBookButton.setAttribute('type', 'button');
-      const removeBookButtonText = document.createTextNode('remove');
-      removeBookButton.appendChild(removeBookButtonText);
+      addTextToElement('remove', removeBookButton);
       const index = cardWrapper.getAttribute('data-index-number');
       removeBookButton.addEventListener('click', () => { library.removeBookFromLibrary(index); }, false); // eslint-disable-line no-use-before-define
-
-
-      cardWrapper.appendChild(bookTitle);
-      cardWrapper.appendChild(bookAuthor);
-      cardWrapper.appendChild(bookPages);
-      cardWrapper.appendChild(bookReadState);
-      cardWrapper.appendChild(removeBookButton);
-      cardWrapper.appendChild(readstatusBtn);
     }
     displayForm();
   };
