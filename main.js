@@ -17,9 +17,9 @@ class Book {
 }
 
 const myLibrary = [];
-myLibrary.push(Book('Romeo and Juliet', 'William Shakespear', 234, true));
-myLibrary.push(Book('Oliver Twist', 'Charles Dickens', 122, false));
-myLibrary.push(Book('Today and Tomorrow', 'Dummy James', 268, false));
+myLibrary.push(new Book('Romeo and Juliet', 'William Shakespear', 234, true));
+myLibrary.push(new Book('Oliver Twist', 'Charles Dickens', 122, false));
+myLibrary.push(new Book('Today and Tomorrow', 'Dummy James', 268, false));
 
 // dom control functions
 const dom = (() => {
@@ -141,7 +141,7 @@ const library = (() => {
       return false;
     };
     const readValue = checkboxState();
-    myLibrary.push(Book(titleValue, authorValue, pageValue, readValue));
+    myLibrary.push(new Book(titleValue, authorValue, pageValue, readValue));
     dom.clearDom();
     dom.displayBooks(myLibrary); // eslint-disable-line no-use-before-define
   };
