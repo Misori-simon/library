@@ -1,26 +1,20 @@
-const Book = (bkTitle, bkAuthor, bkPages, bkRead) => {
-  const title = bkTitle;
-  const author = bkAuthor;
-  const pages = bkPages;
-  let read = bkRead;
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 
-  const changeStatus = (element) => {
-    if (read === true) {
-      read = false;
+  changeStatus = (element) => {
+    if (this.read === true) {
+      this.read = false;
     } else {
-      read = true;
+      this.read = true;
     }
-    element.innerHTML = `Read book?: ${read}`;
-  };
-
-  return {
-    title,
-    author,
-    pages,
-    read,
-    changeStatus,
-  };
-};
+    element.innerHTML = `Read book?: ${this.read}`;
+  }
+}
 
 const myLibrary = [];
 myLibrary.push(Book('Romeo and Juliet', 'William Shakespear', 234, true));
